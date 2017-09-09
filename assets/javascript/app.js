@@ -23,7 +23,7 @@ var disneyQuiz = [questions.q1, questions.q2, questions.q3, questions.q4, questi
 var disneyQuiza = [questions.a1, questions.a2, questions.a3, questions.a4, questions.a5];
 var disneyAnswers = ["apple","true", "a pumpkin", "Rajah", "gorrillas"];
 
-//set timeout
+//set timeout function that goes to next question and answers after 8 secs, also pushes answers to new array
 function eightSeconds() {
 
 //***when submit button is pressed push checked form to userAnswers array else push undefined
@@ -40,7 +40,7 @@ else{
 });
 
   alert("times Up!");
-
+ 
   //increment index var
   index++
 
@@ -69,11 +69,11 @@ function displayQuestion(){
 };
 //create for loop to loop through answers arrays and create answer forms
 function displayAnswers(){
-
+	$("#answers").empty()
 	for (i = 0; i < disneyQuiza[index].length; i++){ 
 		
 		var a = $('<label><input type = "radio" id = "answers" name = "answer" value="' + disneyQuiza[index][i] + '" /> ' + disneyQuiza[index][i] + '</label><br>')
-//**figure out how to remove previous answer! $("#answers").empty().append(a);
+
 				$("#answers").append(a)
 						}
 setTimeout(eightSeconds, 1000 * 8);
@@ -86,15 +86,3 @@ displayQuestion();
 displayAnswers();
 
 
-/*			}
-
-//increment index var
-index++
-
-//reset by recalling functions
-eightSeconds();
-displayAnswers();
-	});
-
-
-*/
