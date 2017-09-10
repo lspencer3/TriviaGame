@@ -16,7 +16,6 @@ var questions = {
         a4: ["Abu", "Rajah", "Jafar"],
         q5: ["Tarzan was Raised by..."],
         a5: ["elephants","tigers", "gorrillas"],
-     
 };
 
 //create necessary arrays
@@ -25,7 +24,7 @@ var disneyQuiza = [questions.a1, questions.a2, questions.a3, questions.a4, quest
 var disneyAnswers = ["apple","true", "a pumpkin", "Rajah", "gorrillas"];
 
 //setup click functionality to assign data attr to submit button when clicked
-$('#submit').click(function(){
+$('#submit').click(function() {
   
 	$(this).data('clicked', true);
 });
@@ -42,25 +41,24 @@ function eightSeconds() {
 	//rerun game functions
  	displayQuestion()
   	displayAnswers()	
-}
+};
 
 //create function to show questions 
 function displayQuestion() {
 
 	//stop at 5 add score together at index = 5
-	if (index ===disneyQuiz.length) {
-		for (i=0; i<userAnswers.length; i++) {
+	if (index === disneyQuiz.length) {
+		/*for (i = 0; i < userAnswers.length; i++) {
 			if (userAnswers[i] === disneyAnswers[i]) {
 				score = score + 1
 			}
-		}
+		}*/
 
-		$("#result").html("You Scored" + score + "/" + disneyQuiz.length + "!") 
-		console.log(score)
+		$("#results").html("You Scored" + score + "/" + disneyQuiz.length + "!") 
 	}
 
 
-	else if (index < disneyQuiz.length) {
+	if (index < disneyQuiz.length) {
 
    		$("#question").html(disneyQuiz[index]);
     }
@@ -74,7 +72,7 @@ function displayAnswers() {
 		console.log(score)
 	}
 
-	else if (index < disneyQuiza.length) {
+	if (index < disneyQuiza.length) {
 		
 		$("#answers").empty()
 
@@ -98,16 +96,43 @@ $("#submit").click(function() {
 
 	userAnswers.push($('input[name="answer"]:checked').val());
 	
-	//increment index var
-    index++
+	if (userAnswers[index] === disneyAnswers[index]) {
+	
+		//display "correct" message
+		$("#update").html("Correct!!")
 
-	//rerun game functions
- 	displayQuestion()
-  	displayAnswers()
+		//increment score
+		score ++
+
+		//increment index var
+    	index++
+
+		//rerun game functions
+ 		displayQuestion()
+  		displayAnswers()
+  	}
+
+  	else if (userAnswers[index] != disneyAnswers[index]) {
+
+  		//display "correct" message
+		$("#update").html("Nope!! The answer was " + disneyAnswers[index])
+
+  		//increment index var
+    	index++
+
+		//rerun game functions
+ 		displayQuestion()
+  		displayAnswers()
+  	}
+
 });
 
-//start game by calling displayQuestion and displayAnswers functions
-displayQuestion();
-displayAnswers();
+//play button functionality
+$("#play").on("click",function(){
 
+	//start game by calling displayQuestion and displayAnswers functions
+	displayQuestion();
+	displayAnswers();
+
+});
 
