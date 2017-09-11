@@ -39,14 +39,17 @@ function decrement() {
     seconds--;
 
     //display seconds
-    $("#update").html(seconds)
+    $("#update").html("Time Left: " + seconds)
 
 	if(seconds === -1) {
     	
     	stop()
 
     	//throw alert and push undefined to user answers array
-		$("#update").html("Times Up! Next Question");
+		$("#update").html("Times Up! The answer was " + disneyAnswers[index]);
+		$("#question").empty()
+		$("#answers").empty()
+		$("#submit").hide()
 		userAnswers.push(undefined);
 
 		//to delay next question so user can read message
@@ -94,7 +97,7 @@ function twoSeconds() {
 function displayQuestion() {
 
 	//display seconds
-    $("#update").html(seconds)
+    $("#update").html("Time Left: " + seconds)
 
 	//stop at 5 add score together at index = 5 and show score
 	if (index === disneyQuiz.length) {
@@ -105,16 +108,12 @@ function displayQuestion() {
 
 		//adding in replay functionality
 		$("#submit").hide()
-		$('<input/>', {
-    		type: 'button',
-    		id: "replay",
-		})
 
-		$("#replay").append("#submit")
+		$("#play").show()
 
-		$("#Replay").html("Replay")
+		$("#play").html("Replay")
 
-		$("#replay").click(function(){
+		$("#play").click(function(){
 
 			//set index back to zero for game reset
 			index=0;
@@ -169,7 +168,9 @@ $("#submit").click(function() {
 
 	//clear button, question and answers out 
 	$("#question").empty()
+
 	$("#answers").empty()
+
 	$("#submit").hide()
 
 	//show correct message if the user answered right
@@ -180,6 +181,8 @@ $("#submit").click(function() {
 
 		//increment scrore
 		score ++
+		
+		$("submit").hide()
 
 		//set time after correct message to move on to next trivia
 		setTimeout(threeSeconds, 1000 * 3);  
@@ -191,6 +194,8 @@ $("#submit").click(function() {
   		//use timer to display "correct" message then remove and show next question and answer
 		$("#update").html("Nope!! The answer was " + disneyAnswers[index])
 
+		$("submit").hide()
+
 		//set time after answer displayed to move on to next trivia
 		setTimeout(threeSeconds, 1000 * 3);  
   	}
@@ -198,6 +203,10 @@ $("#submit").click(function() {
 
 //play button functionality
 $("#play").on("click",function(){
+
+	//hide button
+
+	$("#play").hide()
 
 	//start game by calling displayQuestion and displayAnswers functions
 	displayQuestion();
