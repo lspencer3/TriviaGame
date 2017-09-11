@@ -1,3 +1,4 @@
+
 //create needed variables
 var score = 0;
 var index = 0;
@@ -46,7 +47,7 @@ function decrement() {
     	stop()
 
     	//throw alert and push undefined to user answers array
-		$("#update").html("Times Up! The answer was " + disneyAnswers[index]);
+		$("#update").html("Times Up! The answer: " + "<br>" + disneyAnswers[index]);
 		$("#question").empty()
 		$("#answers").empty()
 		$("#submit").hide()
@@ -109,11 +110,9 @@ function displayQuestion() {
 		//adding in replay functionality
 		$("#submit").hide()
 
-		$("#play").show()
-
-		$("#play").html("Replay")
-
-		$("#play").click(function(){
+		//replay functionality
+		$("#replay").show()
+		$("#replay").click(function() {
 
 			//set index back to zero for game reset
 			index=0;
@@ -122,7 +121,6 @@ function displayQuestion() {
 			displayQuestion();
 			displayAnswers();
 		})
-
 	}
 
 	if (index < disneyQuiz.length) {
@@ -182,8 +180,6 @@ $("#submit").click(function() {
 		//increment scrore
 		score ++
 		
-		$("submit").hide()
-
 		//set time after correct message to move on to next trivia
 		setTimeout(threeSeconds, 1000 * 3);  
   	}
@@ -192,20 +188,22 @@ $("#submit").click(function() {
   	else if (userAnswers[index] != disneyAnswers[index]) {
 
   		//use timer to display "correct" message then remove and show next question and answer
-		$("#update").html("Nope!! The answer was " + disneyAnswers[index])
-
-		$("submit").hide()
+		$("#update").html("Nope!! The answer:" + "<br>" + disneyAnswers[index])
 
 		//set time after answer displayed to move on to next trivia
 		setTimeout(threeSeconds, 1000 * 3);  
   	}
 });
 
+
+$("#submit").hide()
+
+$("#replay").hide();
+
 //play button functionality
-$("#play").on("click",function(){
+$("#play").on("click",function() {
 
 	//hide button
-
 	$("#play").hide()
 
 	//start game by calling displayQuestion and displayAnswers functions
@@ -213,4 +211,6 @@ $("#play").on("click",function(){
 	displayAnswers();
 
 });
+
+
 

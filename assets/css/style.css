@@ -4,11 +4,16 @@
 }
 
 .panel-transparent .panel-heading {
-        background: rgba(122, 130, 136, 0.8);
+        background: rgba(46, 51, 56, 0.8);
         margin-left: 150px;
         margin-right: 150px;
         margin-top: 50px;
         text-align: center;
+        font-family: "Great Vibes";
+        font: bold;
+        font-size: 70px;
+        border-width: 3px;
+        border-color: blue;
 }
 
 .panel-transparent .panel-body {
@@ -17,13 +22,46 @@
         margin-top: 40px;
         margin-left: 150px;
         margin-right: 150px;
+        border-width: 3px;
+        border-color: blue;
 }
 
 #update, #question, #answers, #results {
     	color:white;
+    	font-family: "Contrail One"
 }
 
-#sumbit {
+#clear {
     	color:gray;
+    	text-align: center;
 }
 
+#update {
+	font-size: 30px;
+	text-align: center;
+}
+
+#question, #answers {
+	font-size: 25px;
+}
+
+#question {
+	text-align: center;
+}
+
+#results {
+	text-align: center;
+	font-size: 30px;
+}
+
+#answersdiv{
+	position: relative;
+	left:430px;
+}
+
+#submit{
+	background-color: blue;
+	height: 50%;
+	width: 50%;
+	color: white ;
+}
