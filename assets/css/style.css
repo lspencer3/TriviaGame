@@ -19,7 +19,7 @@
 
 .panel-transparent .panel-body {
         background: rgba(46, 51, 56, 0.8);
-        height: 500px;
+        height: 450px;
         margin-top: 40px;
         margin-left: 150px;
         margin-right: 150px;
@@ -71,3 +71,8 @@ h2, #update, #question, #answers, #results {
 	color: white ;
 }
 
+@media screen and (min-width: 480px) {
+    #submit {
+        background-color: lightgreen;
+    }
+}

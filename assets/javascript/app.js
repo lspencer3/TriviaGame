@@ -8,22 +8,32 @@ var intervalId;
 
 // create object questions for the Trivia game.
 var questions = {
-        q1: ["What Fruit put Snow White in a Deep Sleep?"],
-        a1: ["orange", "apple", "pear", "plum"],
-        q2: ["Mufasa was the Name of Simba's Father"],
-        a2: ["true","false"],
-        q3: ["What is Turned into a Carriage to take Cinderella to the Royal Ball?"],
-        a3: ["a pumpkin","a shoe", "a chair"],
-        q4: ["What is the Name of Jasmine's Pet Tiger"],
-        a4: ["Abu", "Rajah", "Jafar"],
-        q5: ["Tarzan was Raised by..."],
-        a5: ["elephants","tigers", "gorrillas"],
+        q1: ["What fruit put Snow White in a deep sleep?"],
+        a1: ["Orange", "Apple", "Pear", "Plum"],
+        q2: ["Mufasa was the name of Simba's father in Lion King"],
+        a2: ["True","False"],
+        q3: ["What is turned into a carriage to take Cinderella to the royal ball?"],
+        a3: ["A Pumpkin","A Shoe", "A Chair", "A Toilet"],
+        q4: ["What is the name of Jasmine's pet tiger in Aladdin"],
+        a4: ["Abu", "Rajah", "Jafar", "Genie"],
+        q5: ["Tarzan was raised by..."],
+        a5: ["Elephants","Tigers", "Gorrillas", "Wolves"],
+        q6: ["Finish the lyrics:'Wouldn't you think I'm the girl, the girl who has everything? Look at this trove, treasures untold...'"],
+        a6: ["Wonders from all over the world.","How many wonders can one cavern hold?", "Wouldn't you think my collections complete?", "There's so much to be known."],
+        q7: ["In Pocahontas, what did Pocahontas see in her dream that made her believe that a change was coming?"],
+        a7: ["A strange cloud formation", "A hawk circling her village","A spinning arrow", "A boat"],
+        q8: ["What does the matchmaker criticize Mulan for?"],
+        a8: ["Being too skinny.", "Bad posture", "No manners", "Being too tall"],
+        q9: ["Gaston tells Belle they'll have about how many kids together?"],
+        a9: ["Ten or twelve", "Six or seven","One or two", "Five"],
+       q10: ["Name the animated science fiction comedy-drama about a Hawaiin girl and her unusual pet."],
+       a10: ["Tangled", "The Princess and the Frog","Lilo and Stitch", "Moana"]
 };
 
 //create necessary arrays
-var disneyQuiz = [questions.q1, questions.q2, questions.q3, questions.q4, questions.q5];
-var disneyQuiza = [questions.a1, questions.a2, questions.a3, questions.a4, questions.a5];
-var disneyAnswers = ["apple","true", "a pumpkin", "Rajah", "gorrillas"];
+var disneyQuiz = [questions.q1, questions.q2, questions.q3, questions.q4, questions.q5, questions.q6, questions.q7, questions.q8, questions.q9, questions.q10];
+var disneyQuiza =[questions.a1, questions.a2, questions.a3, questions.a4, questions.a5, questions.a6, questions.a7, questions.a8, questions.a9, questions.a10];
+var disneyAnswers = ["Apple","True", "A Pumpkin", "Rajah", "Gorrillas","How many wonders can one cavern hold?","A spinning arrow", "Being too skinny.", "Six or seven", "Lilo and Stitch"];
 
 //create functions for timer that throws an alert pushes undefined to userAnsers array a changes to next question and answers after 8 secs
 
