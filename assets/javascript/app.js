@@ -2,7 +2,8 @@
 var score = 0;
 var index = 0;
 var userAnswers = [];
-var time = 0;
+var seconds = 8;
+var intervalId;
 
 // create object questions for the Trivia game.
 var questions = {
@@ -23,40 +24,107 @@ var disneyQuiz = [questions.q1, questions.q2, questions.q3, questions.q4, questi
 var disneyQuiza = [questions.a1, questions.a2, questions.a3, questions.a4, questions.a5];
 var disneyAnswers = ["apple","true", "a pumpkin", "Rajah", "gorrillas"];
 
-//setup click functionality to assign data attr to submit button when clicked
-$('#submit').click(function() {
-  
-	$(this).data('clicked', true);
-});
+//create functions for timer that throws an alert pushes undefined to userAnsers array a changes to next question and answers after 8 secs
 
-//set timeout function that throws an alert pushes undefined to userAnsers array a changes to next question and answers after 8 secs
-function eightSeconds() {
+//decrementing interval function
+function decint() {
+    
+    intervalId = setInterval(decrement, 1000);
+}
 
-	alert("Times Up! Next Question");
-	userAnswers.push(undefined);
+//The decrement function.
+function decrement() {
 
-    //increment index var
+    //decrease seconds per timer
+    seconds--;
+
+    //display seconds
+    $("#update").html(seconds)
+
+	if(seconds === -1) {
+    	
+    	stop()
+
+    	//throw alert and push undefined to user answers array
+		$("#update").html("Times Up! Next Question");
+		userAnswers.push(undefined);
+
+		//to delay next question so user can read message
+    	setTimeout(twoSeconds, 1000 * 2);
+    }
+}
+
+//creating stop function
+function stop() {
+
+	clearInterval(intervalId)
+
+	seconds = 8
+}
+
+//timer to control displaying correct or right answer for 3 seconds and then clearing and showing new question and answers
+function threeSeconds() {
+
+	//clear user answer feedback 
+	$("#update").empty()
+
+	//increment index var
     index++
 
 	//rerun game functions
  	displayQuestion()
-  	displayAnswers()	
-};
+  	displayAnswers()
+}
+
+//function to delay next question and answer if timer goes to zero
+function twoSeconds() {
+
+	//clear user answer feedback 
+	$("#update").empty()
+
+	//increment index var
+    index++
+
+	//rerun game functions
+ 	displayQuestion()
+  	displayAnswers()
+}
 
 //create function to show questions 
 function displayQuestion() {
 
-	//stop at 5 add score together at index = 5
+	//display seconds
+    $("#update").html(seconds)
+
+	//stop at 5 add score together at index = 5 and show score
 	if (index === disneyQuiz.length) {
-		/*for (i = 0; i < userAnswers.length; i++) {
-			if (userAnswers[i] === disneyAnswers[i]) {
-				score = score + 1
-			}
-		}*/
 
-		$("#results").html("You Scored" + score + "/" + disneyQuiz.length + "!") 
+		$("#update").empty()
+
+		$("#results").html("You Scored " + score + "/" + disneyQuiz.length + "!")
+
+		//adding in replay functionality
+		$("#submit").hide()
+		$('<input/>', {
+    		type: 'button',
+    		id: "replay",
+		})
+
+		$("#replay").append("#submit")
+
+		$("#Replay").html("Replay")
+
+		$("#replay").click(function(){
+
+			//set index back to zero for game reset
+			index=0;
+
+			//rerun start game functions
+			displayQuestion();
+			displayAnswers();
+		})
+
 	}
-
 
 	if (index < disneyQuiz.length) {
 
@@ -67,6 +135,7 @@ function displayQuestion() {
 //create for loop to loop through answers arrays and create answer forms to show for 8 seconds
 function displayAnswers() {
 
+	//stop at 5 add score together at index = 5
 	if(index === disneyQuiza.length) {
 		
 		console.log(score)
@@ -81,50 +150,50 @@ function displayAnswers() {
 			var a = $('<label><input type = "radio" id = "answers" name = "answer" value="' + disneyQuiza[index][i] + '" /> ' + disneyQuiza[index][i] + '</label><br>')
 
 			$("#answers").append(a)
-		}			
-		
-		//set time after answers displayed
-		time = setTimeout(eightSeconds, 1000 * 8);   
+		}
+
+	 $("#submit").show()
+
+		//show decrement count down
+		decint()  
 	}
 };
 
 //when submit button is pressed push checked form to userAnswers array
 $("#submit").click(function() {
     
-    //clear timeout	
-	clearTimeout(time);
+    stop()
 
+	//push user input to answers array
 	userAnswers.push($('input[name="answer"]:checked').val());
-	
+
+	//clear button, question and answers out 
+	$("#question").empty()
+	$("#answers").empty()
+	$("#submit").hide()
+
+	//show correct message if the user answered right
 	if (userAnswers[index] === disneyAnswers[index]) {
 	
 		//display "correct" message
 		$("#update").html("Correct!!")
 
-		//increment score
+		//increment scrore
 		score ++
 
-		//increment index var
-    	index++
-
-		//rerun game functions
- 		displayQuestion()
-  		displayAnswers()
+		//set time after correct message to move on to next trivia
+		setTimeout(threeSeconds, 1000 * 3);  
   	}
 
+  	//show correct answer if user answered wrong
   	else if (userAnswers[index] != disneyAnswers[index]) {
 
-  		//display "correct" message
+  		//use timer to display "correct" message then remove and show next question and answer
 		$("#update").html("Nope!! The answer was " + disneyAnswers[index])
 
-  		//increment index var
-    	index++
-
-		//rerun game functions
- 		displayQuestion()
-  		displayAnswers()
+		//set time after answer displayed to move on to next trivia
+		setTimeout(threeSeconds, 1000 * 3);  
   	}
-
 });
 
 //play button functionality
