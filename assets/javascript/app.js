@@ -117,6 +117,11 @@ function displayQuestion() {
 			//set index back to zero for game reset
 			index=0;
 
+			//empty results
+			$("#results").empty()
+
+			$("#replay").hide();
+
 			//rerun start game functions
 			displayQuestion();
 			displayAnswers();

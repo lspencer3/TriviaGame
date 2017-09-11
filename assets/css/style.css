@@ -1,6 +1,7 @@
 
 .panel-transparent {
         background: none;
+
 }
 
 .panel-transparent .panel-heading {
@@ -23,10 +24,14 @@
         margin-left: 150px;
         margin-right: 150px;
         border-width: 3px;
-        border-color: blue;
 }
 
-#update, #question, #answers, #results {
+.panel-body{
+	border-width: 3px;
+    border-color: blue;
+}
+
+h2, #update, #question, #answers, #results {
     	color:white;
     	font-family: "Contrail One"
 }
@@ -56,7 +61,7 @@
 
 #answersdiv{
 	position: relative;
-	left:430px;
+	left:420px;
 }
 
 #submit{
@@ -65,3 +70,4 @@
 	width: 50%;
 	color: white ;
 }
+
