@@ -127,6 +127,9 @@ function displayQuestion() {
 			//set index back to zero for game reset
 			index=0;
 
+			//reset score
+			score = 0;
+
 			//empty results
 			$("#results").empty()
 
